@@ -2,6 +2,8 @@
 
 Welcome to the LEGO Price Guessing Quiz! This project aims to challenge what you think you know about the pricing of LEGO sets. Many people believe that LEGO sets are overpriced, but do you really know how much they cost?
 
+Go try it out [here](https://kevinskyba.github.io/LEGO-Price-Guessing-Quiz/)!
+
 ## Language
 
 For now the quiz is only available in German.
