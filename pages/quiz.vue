@@ -137,6 +137,7 @@ import VueLoadImage from 'vue-load-image'
 export default {
   components: { Swiper, SwiperSlide, 'vue-load-image': VueLoadImage },
   setup() {
+    const { $statisticsService } = useNuxtApp();
     const router = useRouter();
     const route = useRoute();
     const price = ref(0);
@@ -193,6 +194,7 @@ export default {
     }
 
     const confirmSelection = () => {
+      $statisticsService.saveSelection(set.value.id, price.value, set.value.actualPrice);
       evaluateResult();
     };
 
