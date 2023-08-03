@@ -84,6 +84,12 @@
           >
             Preis bestätigen
           </button>
+          <button
+            @click="moveToNextRandomSet"
+            class="w-full hover:bg-yellow-400 text-white hover:text-red-600 font-bold py-2 px-4 rounded"
+          >
+            Anderes Set
+          </button>
         </div>
         <div v-if="result !== null" class="text-center text-2xl lg:text-4xl">
           Die UVP lautet
