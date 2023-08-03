@@ -83,7 +83,4 @@ jobs:
         id: deployment
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: './.output/public'
-          CLEAN: true
+          folder: './.output/public'
