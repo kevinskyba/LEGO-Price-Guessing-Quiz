@@ -8,6 +8,4 @@
 </template>
 
 <style>
-html {
-}
 </style>

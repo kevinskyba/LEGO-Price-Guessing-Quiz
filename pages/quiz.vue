@@ -1,5 +1,5 @@
 <template>
-  <div  v-if="set !== undefined" class="w-full lg:w-2/3 px-16 lg:px-0 mx-auto">
+  <div  v-if="set !== undefined" class="w-full lg:w-2/3 px-8 lg:px-0 mx-auto">
     <div class="items-center justify-center pt-16 pb-16">
       <div class="text-l lg:text-2xl">
         <h1 class="text-2xl lg:text-4xl text-center mb-4 font-bold">
@@ -47,37 +47,47 @@
         <div class="relative h-36">
           <div
             :style="{
-              left: `calc(${(price / 1000) * 100}% - ${
-                -1.9 + 3.8 * (price / 1000)
+              left: `calc(${(price / currentSliderMax) * 100}% - ${
+                -1.9 + 3.8 * (price / currentSliderMax)
               }rem)`,
             }"
-            class="pill absolute -top-4 transform -translate-x-1/2 -translate-y-full p-8 border-black text-black text-2xl font-bold text-center"
+            class="pill absolute -top-4 transform -translate-x-1/2 -translate-y-full p-8 border-black text-black text-xl font-bold text-center"
           >
             {{ price }}€
           </div>
           <div
             v-if="result !== null"
             :style="{
-              left: `calc(${(set.actualPrice / 1000) * 100}% - ${
-                -2 + 3.5 * (set.actualPrice / 1000)
+              left: `calc(${(set.actualPrice / currentSliderMax) * 100}% - ${
+                -2 + 3.5 * (set.actualPrice / currentSliderMax)
               }rem)`,
             }"
-            class="pill-upside-down absolute top-36 transform -translate-x-1/2 -translate-y-full p-8 border-black text-black text-2xl font-bold text-center"
+            class="pill-upside-down absolute top-36 transform -translate-x-1/2 -translate-y-full p-8 border-black text-black text-xl font-bold text-center"
           >
-            {{ Math.round(set.actualPrice) }} €
+            {{ Math.round(set.actualPrice) }}€
           </div>
           <input
             :disabled="result !== null"
             type="range"
             v-model="price"
             min="0"
-            max="1000"
+            :max="currentSliderMax"
             step="1"
             class="slider w-full h-2 outline-none appearance-none mt-6"
             @input="moveBubble"
           />
+          <div v-if="result === null" class="my-8 flex justify-between">
+            <div class="flex space-x-2">
+              <button @click="decreasePrice(10)" class="w-16 h-16 lg:w-8 lg:h-8 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">-10</button>
+              <button @click="decreasePrice(1)" class="w-16 h-16 lg:w-8 lg:h-8 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">-1</button>
+            </div>
+            <div class="flex space-x-2">
+              <button @click="increasePrice(1)" class="w-16 h-16 lg:w-8 lg:h-8 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">+1</button>
+              <button @click="increasePrice(10)" class="w-16 h-16 lg:w-8 lg:h-8 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">+10</button>
+            </div>
+          </div>
         </div>
-        <div v-if="result === null">
+        <div v-if="result === null" class="my-4">
           <button
             @click="confirmSelection"
             class="w-full bg-red-600 hover:bg-yellow-400 text-white hover:text-red-600 font-bold py-2 px-4 rounded"
@@ -86,7 +96,7 @@
           </button>
           <button
             @click="moveToNextRandomSet"
-            class="w-full hover:bg-yellow-400 text-white hover:text-red-600 font-bold py-2 px-4 rounded"
+            class="w-full hover:bg-yellow-400 text-white hover:text-red-600 font-bold py-2 my-2 rounded"
           >
             Anderes Set
           </button>
@@ -131,6 +141,7 @@ export default {
     const route = useRoute();
     const price = ref(0);
     const result = ref(null);
+    const currentSliderMax = ref(1000);
     
     const setID = computed(() => route.query.setID);
     
@@ -156,11 +167,30 @@ export default {
     const resetData = () => {
       price.value = 0;
       result.value = null;
+      currentSliderMax.value = 1000;
     };
 
     const maximizeImage = (image) => {
       selectedImage.value = image;
     };
+
+    const increasePrice = (value) => {
+      console.log(price.value);
+
+      if (price.value <= 1000)
+        price.value = parseInt(price.value) + value;
+
+      console.log(price.value);
+    }
+
+    const decreasePrice = (value) => {
+      console.log(price.value);
+
+      if (price.value > 0)
+        price.value = parseInt(price.value) - value;
+
+      console.log(price.value);
+    }
 
     const confirmSelection = () => {
       evaluateResult();
@@ -169,6 +199,7 @@ export default {
     const evaluateResult = () => {
       const difference = Math.abs(price.value - set.value.actualPrice);
       result.value = difference < set.value.actualPrice * 0.1;
+      currentSliderMax.value = Math.ceil((Math.max(set.value.actualPrice, price.value) / 100) * 100);
     };
 
     const moveToNextRandomSet = () => {
@@ -192,10 +223,13 @@ export default {
       result,
       setID,
       set,
+      currentSliderMax,
       resultText,
       checkForValidSet,
       resetData,
       maximizeImage,
+      increasePrice,
+      decreasePrice,
       confirmSelection,
       evaluateResult,
       moveToNextRandomSet,
