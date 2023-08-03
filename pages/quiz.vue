@@ -78,12 +78,12 @@
           />
           <div v-if="result === null" class="my-8 flex justify-between">
             <div class="flex space-x-2">
-              <button @click="decreasePrice(10)" class="w-16 h-16 lg:w-8 lg:h-8 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">-10</button>
-              <button @click="decreasePrice(1)" class="w-16 h-16 lg:w-8 lg:h-8 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">-1</button>
+              <button @click="decreasePrice(10)" class="w-16 h-16 lg:w-12 lg:h-12 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">-10</button>
+              <button @click="decreasePrice(1)" class="w-16 h-16 lg:w-12 lg:h-12 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">-1</button>
             </div>
             <div class="flex space-x-2">
-              <button @click="increasePrice(1)" class="w-16 h-16 lg:w-8 lg:h-8 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">+1</button>
-              <button @click="increasePrice(10)" class="w-16 h-16 lg:w-8 lg:h-8 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">+10</button>
+              <button @click="increasePrice(1)" class="w-16 h-16 lg:w-12 lg:h-12 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">+1</button>
+              <button @click="increasePrice(10)" class="w-16 h-16 lg:w-12 lg:h-12 border-2 rounded-lg text-xl text-center align-middle hover:bg-red-e hover:bg-red-600">+10</button>
             </div>
           </div>
         </div>
@@ -199,7 +199,7 @@ export default {
     const evaluateResult = () => {
       const difference = Math.abs(price.value - set.value.actualPrice);
       result.value = difference < set.value.actualPrice * 0.1;
-      currentSliderMax.value = Math.ceil((Math.max(set.value.actualPrice, price.value) / 100) * 100);
+      currentSliderMax.value = Math.ceil((Math.max(set.value.actualPrice, price.value) / 100)) * 100;
     };
 
     const moveToNextRandomSet = () => {
@@ -248,7 +248,7 @@ export default {
   -webkit-appearance: none;
   width: 60px;
   height: 60px;
-  background: url("img/brick.png");
+  background: url("@/public/img/brick.png");
   background-size: cover;
   border: 0;
   border-radius: 50%;
