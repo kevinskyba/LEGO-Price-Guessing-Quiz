@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   ssr: false,
   modules: ["@nuxtjs/tailwindcss"],
   css: ['@/assets/css/tailwind.css'],
-  purgeCSS: {
-    enabled: false
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
   }
 });
