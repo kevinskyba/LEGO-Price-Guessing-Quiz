@@ -224,7 +224,7 @@ export default {
 .slider::-moz-range-thumb {
   width: 60px;
   height: 60px;
-  background: url("img/brick.png");
+  background: url("@/public/img/brick.png");
   background-size: cover;
   border: 0;
   border-radius: 50%;
@@ -232,14 +232,14 @@ export default {
 }
 
 .pill {
-  background-image: url("img/price_pill.png");
+  background-image: url("@/public/img/price_pill.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .pill-upside-down {
-  background-image: url("img/price_pill_180.png");
+  background-image: url("@/public/img/price_pill_180.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
