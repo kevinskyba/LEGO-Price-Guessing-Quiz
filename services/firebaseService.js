@@ -26,9 +26,7 @@ export default class FirebaseService {
   async addDocumentToCollection(_collection, document) {
     if (this.isFirebaseAvailable === false) return;  
     try {
-      console.log(document);
-      const ref = await addDoc(collection(this._firestore, _collection), document).then(ref => {console.log(ref);});
-      console.log(ref);
+      await addDoc(collection(this._firestore, _collection), document);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -43,8 +41,6 @@ export default class FirebaseService {
       messagingSenderId: this.config.FIREBASE_MESSAGING_SENDER_ID,
       appId: this.config.FIREBASE_APP_ID
     };
-
-    console.log(firebaseConfig);
 
     this._firebaseApp = initializeApp(firebaseConfig);
     this._firestore = getFirestore(this._firebaseApp);
