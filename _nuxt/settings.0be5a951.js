@@ -1,0 +1,1 @@
+import{_ as t,f as s,c as o,o as r,a as n}from"./entry.4223984b.js";const c={setup(){return s().push("/quiz"),{}}},a=n("h1",null,"Settings Page",-1),u=[a];function _(e,i,p,d,l,f){return r(),o("div",null,u)}const m=t(c,[["render",_]]);export{m as default};
