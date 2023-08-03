@@ -10,11 +10,13 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@types/node": "^18.17.1"
+  },
+  "dependencies": {
+    "vue-load-image": "^1.1.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
-    "@types/node": "^18.17.1",
     "nuxt": "^3.6.5",
     "swiper": "10.1.0",
-    "underscore": "^1.13.1",
-    "vue-load-image": "^1.1.0"
+    "underscore": "^1.13.1"
   }
 }
