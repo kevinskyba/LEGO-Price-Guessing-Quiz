@@ -1,5 +1,5 @@
 <template>
-  <div v-if="set !== undefined" class="w-full lg:w-2/3 px-8 lg:px-0 mx-auto">
+  <div  v-if="set !== undefined" class="w-full lg:w-2/3 px-8 lg:px-0 mx-auto">
     <div class="items-center justify-center pt-16 pb-16">
       <div class="text-l lg:text-2xl">
         <h1 class="text-2xl lg:text-4xl text-center mb-4 font-bold">
@@ -13,10 +13,6 @@
           <p>
             <strong class="font-bold">Kollektion: </strong>
             <span class="font-normal block lg:inline">{{ set.collection }}</span>
-          </p>
-          <p v-if="set.hasOwnProperty('year')">
-            <strong class="font-bold">Jahr: </strong>
-            <span class="font-normal block lg:inline">{{ set.year }}</span>
           </p>
         </div>
       </div>
